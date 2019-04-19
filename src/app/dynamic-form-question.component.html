@@ -1,0 +1,21 @@
+<div [formGroup]="item">
+  <label [attr.for]="question.key+index">{{question.label}}</label>
+
+  <div [ngSwitch]="question.controlType">
+
+    <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
+            [attr.id]="question.key+index" [type]="question.type">
+
+    <select [attr.id]="question.key+index" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+
+  </div>
+
+  <div *ngIf="item.get(question.key).invalid && item.get(question.key).touched">
+    <div class="errorMessage" *ngIf="item.get(question.key).errors.required">{{question.label}} is required</div>
+    <div class="errorMessage" *ngIf="item.get(question.key).errors.email">Digite um email válido</div>
+  </div>
+
+  <!-- <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div> -->
+</div>

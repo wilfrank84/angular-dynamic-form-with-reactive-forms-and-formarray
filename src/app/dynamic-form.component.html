@@ -1,0 +1,23 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <app-dynamic-form-array
+      formArrayName="braves"
+      [itemsFormArray]="form.get('braves')"
+      [questions]="questions">
+    </app-dynamic-form-array>
+
+    <div class="form-row">
+      <br>
+      <button type="button" (click)="addContact()">new</button>
+      <button type="submit" [disabled]="form.invalid">Save</button>
+    </div>
+
+    <div><pre><code>{{ form?.value | json }}</code></pre></div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+
+</div>

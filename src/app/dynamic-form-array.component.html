@@ -1,0 +1,10 @@
+
+<div *ngFor="let item of itemsFormArray.controls; let i = index;">
+
+  <div *ngFor="let question of questions">
+    <app-question [question]="question" [item]="item" [index]="i"></app-question>
+    <br>
+  </div>
+  <button type="button" (click)="itemsFormArray.removeAt(i)"> Remove </button>
+
+</div>
